@@ -25,6 +25,7 @@ someOrange.weight = 0.66
 
 print("My \(someOrange.weight) kg orange has \(someOrange.color) color and \(someOrange.taste) taste")
 
+
 /*
 Exercise 2
 1.Create new Parent(Superclass) Class Figure. Inside the Class declare:
@@ -42,32 +43,53 @@ Exercise 2
  5.Make Class example from Rectangle Class and named it as myRectangle and give a value as you want for height and width.
  6.Finally call myRectangle.description()
 */
-
 class Figure {
-        var height: Float
-        var width: Float
-        var radius: Float
-        var square: Float
-        var perimeter: Float
-    
-    init (height: Float, width: Float){
-        func squareOfFigure() -> Float {return square}
-        func perimeterOfFigure() -> Float {return perimeter}
+    var height: Float = 0
+    var width: Float = 0
+    var radius: Float = 0
+    var square: Float!
+    var perimeter: Float!
+    init(radius2: Float) {
+        radius = radius2
+    }
+    init(height: Float, width: Float){
+        self.height = height
+        self.width = width
+    }
+    func squareOfFigure() -> Float {
+        return square
+    }
+    func perimeterOfFigure() -> Float {
+        return perimeter
     }
 }
-
 class Rectangle: Figure {
-    var rectangle: Float = 0.0
-    override func squareOfFigure() {
-        square = width * height
+    override func squareOfFigure() -> Float {
+        square = height * width
+        return square
     }
-    override func perimeterOfFigure() {
-    perimeter = 2 * (width * height)
+    override func perimeterOfFigure() -> Float {
+        perimeter = (height + width) * 2
+        return perimeter
     }
-    
+    func description(){
+       print("Rectangle area is: \(squareOfFigure()), and perimeter Of Figure is: \(perimeterOfFigure())")
+    }
 }
-var myRectangle = Rectangle (height: 2.1, width: 3.0)
-myRectangle.height = 2.1
-myRectangle.width = 3.0
+class Circle: Figure {
+    override func squareOfFigure() -> Float {
+        square = Float.pi * radius * radius
+        return square
+    }
+    override func perimeterOfFigure() -> Float {
+        perimeter = Float.pi * 2 * radius
+        return perimeter
+    }
+    func description(){
+       print("Circle area is: \(squareOfFigure()), and perimeter Of Figure is: \(perimeterOfFigure())")
+    }
+}
+let myRectangle = Rectangle(height: 6, width: 9)
 myRectangle.description()
-
+let myCircle = Circle(radius2: 5)
+myCircle.description()
